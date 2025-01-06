@@ -10,7 +10,8 @@ import { ToastContainer } from 'react-toastify';
 
 const App = () => {
 
-  const [token ,setToken] = useState('')
+  const [token ,setToken] = useState('');
+  const [passkey ,setPasskey] = useState('');
 
   return (
     <div>
@@ -23,7 +24,7 @@ const App = () => {
         </div>
         <Routes>
           <Route path='/' element={<Register />} />
-          <Route path='/Login' element={<Login setToken={setToken}/>} />
+          <Route path='/Login' element={<Login setToken={setToken} setPasskey={setPasskey}/>} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:id/:token/:passkey" element={<ResetPassword />} />
         </Routes>

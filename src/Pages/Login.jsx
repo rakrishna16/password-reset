@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { SiVorondesign } from "react-icons/si";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
- 
 
-const Login = ({setToken}) => {
+
+const Login = ({ setToken, setPasskey }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPass, setShowPass] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,6 +20,7 @@ const Login = ({setToken}) => {
             .then((res) => {
                 toast.success(res.data.message);
                 setToken(res.data.token)
+                setPasskey(res.data.passkey)
             })
             .catch((error) => {
                 console.log(error);
@@ -52,10 +54,10 @@ const Login = ({setToken}) => {
                                 </div>
                             </div>
                             <div className="mt-2">
-                                <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-teal-500 sm:text-sm/6" />
+                                <input type={showPass ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-teal-500 sm:text-sm/6" />
                             </div>
                             <div className="mt-2">
-                                {/* <input type="checkbox" className="checked:bg-blue-500" />{` show password`} */}
+                                <input type="checkbox" onClick={() => setShowPass(!showPass)} className="p-10 checked:bg-teal-500 hover:bg-teal-500 text-gray-900" />{showPass ? " hide" : " show"} password
                             </div>
                         </div>
                         <div>
