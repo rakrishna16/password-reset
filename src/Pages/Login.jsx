@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
  
 
-const Login = () => {
+const Login = ({setToken}) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
