@@ -8,12 +8,12 @@ import { SiVorondesign } from "react-icons/si";
 const ResetPassword = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const { id, token } = useParams();
+    const { id, token, passkey } = useParams();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         await axios
-            .post(`https://password-rest-h7d5.onrender.com/api/auth/reset-password/${id}/${token}`, {
+            .post(`https://password-rest-h7d5.onrender.com/api/auth/reset-password/${id}/${token}/${passkey}`, {
                 password,
             })
             .then((res) => {
